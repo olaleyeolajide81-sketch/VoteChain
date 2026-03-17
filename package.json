@@ -1,0 +1,80 @@
+{
+  "name": "votechain",
+  "version": "1.0.0",
+  "description": "Decentralized Voting & Governance Platform on Stellar",
+  "main": "index.js",
+  "scripts": {
+    "install:all": "npm install && cd contracts && npm install && cd ../backend && npm install && cd ../frontend && npm install",
+    "build": "npm run build:contracts && npm run build:backend && npm run build:frontend",
+    "build:contracts": "cd contracts && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "test": "npm run test:contracts && npm run test:backend && npm run test:frontend",
+    "test:contracts": "cd contracts && npm run test",
+    "test:backend": "cd backend && npm run test",
+    "test:frontend": "cd frontend && npm run test",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm start",
+    "deploy": "npm run deploy:contracts && npm run deploy:backend",
+    "deploy:contracts": "cd contracts && npm run deploy:testnet",
+    "deploy:backend": "cd backend && npm run deploy",
+    "lint": "npm run lint:contracts && npm run lint:backend && npm run lint:frontend",
+    "lint:contracts": "cd contracts && npm run lint",
+    "lint:backend": "cd backend && npm run lint",
+    "lint:frontend": "cd frontend && npm run lint",
+    "format": "npm run format:contracts && npm run format:backend && npm run format:frontend",
+    "format:contracts": "cd contracts && npm run format",
+    "format:backend": "cd backend && npm run format",
+    "format:frontend": "cd frontend && npm run format"
+  },
+  "keywords": [
+    "blockchain",
+    "stellar",
+    "voting",
+    "governance",
+    "dao",
+    "web3",
+    "decentralized",
+    "smart-contracts",
+    "soroban"
+  ],
+  "author": "VoteChain Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olaleyeolajide81-sketch/VoteChain.git"
+  },
+  "bugs": {
+    "url": "https://github.com/olaleyeolajide81-sketch/VoteChain/issues"
+  },
+  "homepage": "https://github.com/olaleyeolajide81-sketch/VoteChain#readme",
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0"
+  },
+  "workspaces": [
+    "contracts",
+    "backend",
+    "frontend"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{sol}": [
+      "solhint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  }
+}
